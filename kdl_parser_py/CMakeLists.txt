@@ -16,4 +16,10 @@ catkin_install_python(PROGRAMS ${PROJECT_NAME}/urdf.py
 if(CATKIN_ENABLE_TESTING)
   find_package(catkin REQUIRED COMPONENTS rostest)
   add_rostest(test/test_kdl_parser.launch)
+
+  # Force CMake to find python again in case it was called before to find python 2
+  unset(PYTHON_EXECUTABLE CACHE)
+  unset(PYTHONINTERP_FOUND CACHE)
+  find_package(PythonInterp 3 REQUIRED)
+  add_test(NAME test_py3_syntax COMMAND "${PYTHON_EXECUTABLE}" "-m" "flake8" "--select" "E999")
 endif()
