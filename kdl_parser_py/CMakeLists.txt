@@ -29,7 +29,7 @@ if(CATKIN_ENABLE_TESTING)
 
   if(old_python_exec)
     # Restore old executable in case something after expects python 2
-    set(PYTHON_EXECUTABLE "${old_python_exec}" CACHE PATH FORCE)
+    set(PYTHON_EXECUTABLE "${old_python_exec}" CACHE PATH "Python executable found by PythonInterp" FORCE)
   else()
     # Unset in case some catkin script tries to find_package(PythonInterp)
     unset(PYTHON_EXECUTABLE CACHE)
